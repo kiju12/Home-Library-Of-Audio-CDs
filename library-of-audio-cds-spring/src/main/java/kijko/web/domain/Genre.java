@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Genre implements Serializable {
 	
@@ -22,6 +24,7 @@ public class Genre implements Serializable {
 	
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "genre", fetch = FetchType.EAGER)
 	private List<Album> albums;
 	

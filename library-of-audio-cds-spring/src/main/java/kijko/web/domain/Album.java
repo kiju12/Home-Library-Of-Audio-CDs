@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Album implements Serializable {
 
@@ -27,6 +31,7 @@ public class Album implements Serializable {
 	private double length;
 	
 	private int numberOfSongs;
+	
 	
 	@ManyToOne(cascade= { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE }, optional=false)
 	private Artist artist;

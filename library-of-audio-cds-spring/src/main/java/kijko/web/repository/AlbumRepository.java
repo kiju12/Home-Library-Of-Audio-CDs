@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import kijko.web.domain.Album;
 
 @Repository
-@RestResource(path = "/albums")
+//@RestResource(path = "/albums")
 public interface AlbumRepository extends JpaRepository<Album, Long> {
 
 }

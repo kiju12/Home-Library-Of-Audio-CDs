@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import kijko.web.domain.Track;
 
 @Repository
-@RestResource(path = "/tracks")
+//@RestResource(path = "/tracks")
 public interface TrackRepository extends JpaRepository<Track, Long> {
 
 }

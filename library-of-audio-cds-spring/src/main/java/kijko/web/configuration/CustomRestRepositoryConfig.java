@@ -16,5 +16,8 @@ public class CustomRestRepositoryConfig extends RepositoryRestConfigurerAdapter 
 	@Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration configuration) {
         configuration.exposeIdsFor(Album.class, Artist.class, Genre.class, Track.class);
+        configuration.getCorsRegistry().addMapping("/**")
+        .allowedOrigins("http://localhost:4200")
+        .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }

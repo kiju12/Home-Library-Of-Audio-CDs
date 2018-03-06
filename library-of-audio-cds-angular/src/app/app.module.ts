@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { AlbumService } from './service/album.service';
+import { ArtistService } from './service/artist.service';
+import { GenreService } from './service/genre.service';
+import { TrackService } from './service/track.service';
 
 
 @NgModule({
@@ -10,9 +16,16 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AlbumService,
+    ArtistService,
+    GenreService,
+    TrackService,
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

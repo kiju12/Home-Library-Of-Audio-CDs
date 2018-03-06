@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Track implements Serializable {
 
@@ -24,6 +28,7 @@ public class Track implements Serializable {
 	
 	private double length;
 	
+	@JsonIgnore
 	@ManyToOne(cascade= { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE }, optional=false)
 	private Album album;
 	
@@ -66,6 +71,14 @@ public class Track implements Serializable {
 
 	public void setLength(double length) {
 		this.length = length;
+	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 	
 	

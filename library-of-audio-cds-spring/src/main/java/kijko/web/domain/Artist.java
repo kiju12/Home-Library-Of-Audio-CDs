@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Artist implements Serializable {
@@ -24,6 +28,7 @@ public class Artist implements Serializable {
 	
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(cascade= { CascadeType.REMOVE, CascadeType.REFRESH }, fetch = FetchType.EAGER, mappedBy = "artist")
 	private List<Album> discography;
 	
