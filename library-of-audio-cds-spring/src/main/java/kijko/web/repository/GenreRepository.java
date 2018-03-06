@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import kijko.web.domain.Genre;
 
 @Repository
-@RestResource(path = "/genre")
+@RestResource(path = "/genres")
 public interface GenreRepository extends JpaRepository<Genre, Long> {
 
 }
