@@ -7,6 +7,7 @@ import { Genre } from './domain/genre';
 import { ArtistService } from './service/artist.service';
 import { GenreService } from './service/genre.service';
 import { TrackService } from './service/track.service';
+import { MessagesService } from './service/messages.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,7 @@ import { TrackService } from './service/track.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
+  messagess = '';
   albumList: Album[] = [];
   albumOne: Album;
   artist: Artist;
@@ -25,8 +25,10 @@ export class AppComponent {
   constructor(private albumService: AlbumService,
     private artistService: ArtistService,
     private genreService: GenreService,
-    private trackService: TrackService) {
+    private trackService: TrackService,
+    private messages: MessagesService) {
 
+    messages.getMessages().subscribe((data: any) => this.messagess = data);
   }
 
   readAlbums(): void {

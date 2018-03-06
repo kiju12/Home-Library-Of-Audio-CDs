@@ -9,6 +9,8 @@ import { AlbumService } from './service/album.service';
 import { ArtistService } from './service/artist.service';
 import { GenreService } from './service/genre.service';
 import { TrackService } from './service/track.service';
+import { MessagesService } from './service/messages.service';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
@@ -17,13 +19,15 @@ import { TrackService } from './service/track.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     AlbumService,
     ArtistService,
     GenreService,
     TrackService,
+    MessagesService,
     HttpClient
   ],
   bootstrap: [AppComponent]
