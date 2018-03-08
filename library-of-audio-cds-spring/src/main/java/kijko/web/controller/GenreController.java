@@ -8,22 +8,24 @@ import org.springframework.web.bind.annotation.RestController;
 import kijko.web.domain.Album;
 import kijko.web.repository.AlbumRepository;
 import kijko.web.repository.GenreRepository;
+import kijko.web.service.AlbumService;
+import kijko.web.service.GenreService;
 
 @RestController
 public class GenreController {
 
 	@Autowired
-	private GenreRepository genreRepo;
+	private GenreService genreService;
 	
 	@Autowired
-	private AlbumRepository albumRepo;
+	private AlbumService albumService;
 	
 	@DeleteMapping("/api/custom/genres/{id}")
 	public void deleteGenre(@PathVariable("id") Long id) {
-		for (Album album : genreRepo.findById(id).get().getAlbums()) {
+		for (Album album : genreService.findById(id).getAlbums()) {
 			album.setGenre(null);
-			albumRepo.save(album);
+			albumService.save(album);
 		}
-		genreRepo.deleteById(id);
+		genreService.deleteById(id);
 	}
 }

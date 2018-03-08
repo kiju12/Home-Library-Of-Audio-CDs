@@ -16,49 +16,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kijko.web.domain.Album;
-import kijko.web.domain.Track;
-import kijko.web.repository.AlbumRepository;
-import kijko.web.repository.ArtistRepository;
-import kijko.web.repository.GenreRepository;
+import kijko.web.service.AlbumService;
+import kijko.web.service.ArtistService;
+import kijko.web.service.GenreService;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class AlbumController {
 
 	@Autowired
-	private AlbumRepository albumRepo;
+	private AlbumService albumService;
 	
 	@Autowired
-	private ArtistRepository artistRepo;
+	private ArtistService artistService;
 	
 	@Autowired
-	private GenreRepository genreRepo;
+	private GenreService genreService;
 		
 	@GetMapping("/api/custom/albums")
 	public List<Album> getAll() {
-		System.out.println("ELO");
-		return albumRepo.findAll();
+		return albumService.findAll();
 	}
 	
 	@GetMapping("/api/custom/albums/{id}")
 	public Album getById(@PathVariable("id") Long id) {
-		return albumRepo.findById(id).get();
+		return albumService.findById(id);
 	}
 	
 	@GetMapping("/api/custom/albums/artist/{id}")
 	public List<Album> getDiscography(@PathVariable("id") Long artist_id) {
-		return artistRepo.findById(artist_id).get().getDiscography();
+		return artistService.findById(artist_id).getDiscography();
 	}
 	
 	@GetMapping("/api/custom/albums/genre/{id}")
 	public List<Album> getAlbumsOfGenre(@PathVariable("id") Long genre_id) {
-		return genreRepo.findById(genre_id).get().getAlbums();
+		return genreService.findById(genre_id).getAlbums();
 	}
 	
 	@GetMapping("/api/custom/albums/TBA")
 	public List<Album> getAlbumsWithoutGenre() {
 		List<Album> albums = new ArrayList<>();
-		for (Album album : albumRepo.findAll()) {
+		for (Album album : albumService.findAll()) {
 			if(album.getGenre() == null)
 				albums.add(album);
 		}
@@ -68,16 +66,16 @@ public class AlbumController {
 	
 	@PostMapping("/api/custom/albums")
 	public Album add(@RequestBody Album album) {
-		return albumRepo.save(album);
+		return albumService.save(album);
 	}
 	
 	@PutMapping("/api/custom/albums/{id}")
 	public Album update(@RequestBody Album album) {
-		return albumRepo.save(album);
+		return albumService.save(album);
 	}
 	
 	@DeleteMapping("/api/custom/albums/{id}")
 	public void delete(@PathVariable("id") Long id) {
-		albumRepo.deleteById(id);
+		albumService.deleteById(id);
 	}
 }
