@@ -1,59 +1,59 @@
-<div class="container">
+<div *ngIf="msg"  class="container">
     <div *ngIf="albumAdded" class="alert alert-primary">
-        Album pomyślnie dodany!
+        {{msg.addAlbum.addAlert}}
       </div>
   <div class="card bg-dark">
     <div class="card-header">
-      <h2 class="display-4 text-center text-white header">Dodawanie albumu</h2>
+      <h2 class="display-4 text-center text-white header">{{msg.addAlbum.panel.header}}</h2>
     </div>
     <div class="card-body row">
       <form [formGroup]="addAlbumForm" id="addAlbumForm" class="col-md-3 main-form" (ngSubmit)="onAlbumSubmit()" novalidate>
         <div class="text-white">
           <label class="center-block">
-            <span class="star">*</span>Artysta:
+            <span class="star">*</span>{{msg.addAlbum.panel.form.artist}}
             <input class="form-control" formControlName="name" maxlength="16">
-            <span class="info-footer">Minimum 3 znaki</span>
-            <p *ngIf="artistWhitespaceError" class="error">Nazwa artysty nie może składać się tylko z pustych znakow</p>
+            <span class="info-footer">{{msg.addAlbum.panel.form.artistInfo}}</span>
+            <p *ngIf="artistWhitespaceError" class="error">{{msg.addAlbum.panel.form.artistError}}</p>
           </label>
 
-          <label class="center-block">Gatunek:
+          <label class="center-block">{{msg.addAlbum.panel.form.genre}}
             <input class="form-control" formControlName="genre" maxlength="16">
           </label>
 
           <label class="center-block">
-            <span class="star">*</span>Nazwa albumu:
+            <span class="star">*</span>{{msg.addAlbum.panel.form.albumName}}:
             <input class="form-control" formControlName="albumName" maxlength="32">
-            <span class="info-footer">Minimum 3 znaki</span>
-            <p *ngIf="albumWhitespaceError" class="error">Nazwa albumu nie może składać się tylko z pustych znakow</p>
+            <span class="info-footer">{{msg.addAlbum.panel.form.albumInfo}}</span>
+            <p *ngIf="albumWhitespaceError" class="error">{{msg.addAlbum.panel.form.albumError}}</p>
           </label>
 
           <hr>
 
           <form [formGroup]="addTrackForm" id="addTrackForm" (ngSubmit)="onTrackSubmit(addTrackForm.value)" novalidate>
             <label class="center-block">
-              <span class="star">*</span>Tytuł utworu:
+              <span class="star">*</span>{{msg.addAlbum.panel.form.trackForm.name}}:
               <input class="form-control" formControlName="title" maxlength="16">
             </label>
 
-            <label class="center-block">Producent:
+            <label class="center-block">{{msg.addAlbum.panel.form.trackForm.producer}}
               <input class="form-control" formControlName="producerName" maxlength="16">
             </label>
 
 
             <label class="center-block" for="time">
-              <span class="star">*</span>Czas trwania:
+              <span class="star">*</span>{{msg.addAlbum.panel.form.trackForm.length}}
               <div class="row" id="time">
-                <label class="col-md-5">Min:
+                <label class="col-md-5">{{msg.addAlbum.panel.form.trackForm.min}}
                   <input class="form-control" formControlName="lengthMin">
                 </label>
-                <label class="col-md-5">Sec:
+                <label class="col-md-5">{{msg.addAlbum.panel.form.trackForm.sec}}
                   <input class="form-control" formControlName="lengthSec">
                 </label>
               </div>
             </label>
 
 
-            <button type="submit" [disabled]="addTrackForm.status == 'INVALID'" class="btn btn-secondary center-block col-md-10">Dodaj utwor</button>
+            <button type="submit" [disabled]="addTrackForm.status == 'INVALID'" class="btn btn-secondary center-block col-md-10">{{msg.addAlbum.panel.form.trackForm.addTrack}}</button>
           </form>
         </div>
 
@@ -73,8 +73,8 @@
     </div>
 
     <button type="submit" form="addAlbumForm" [disabled]="addAlbumForm.status ==='INVALID' || aristWhitespaceError || albumWhitespaceError || currentTrackList.length == 0"
-      class="btn btn-primary btn-lg album-button mx-auto">Dodaj album</button>
+      class="btn btn-primary btn-lg album-button mx-auto">{{msg.addAlbum.panel.form.addAlbum}}</button>
     <span class="info-footer">
-      <span class="star">*</span> - pole wymagane</span>
+      <span class="star">*</span>{{msg.required}}</span>
   </div>
 </div>

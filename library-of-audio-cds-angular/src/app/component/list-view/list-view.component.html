@@ -1,41 +1,41 @@
-<div class="container">
+<div *ngIf="msg" class="container">
   <div class="border bg-light">
     <div class="row">
-      <h1 class="mx-auto filter-head">Filtruj</h1>
+      <h1 class="mx-auto filter-head">{{msg.listView.filter.head}}</h1>
     </div>
 
     <div class="row">
       <div *ngIf="filterOption === 'artist'" class="btn-group filter-margin mx-auto">
-        <button type="button" class="btn btn-secoundary">Artyści</button>
+        <button type="button" class="btn btn-secoundary">{{msg.listView.filter.byArtist}}</button>
         <button type="button" class="btn btn-secoundary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item select-drop" (click)="initList()">Wszyscy</a>
+          <a class="dropdown-item select-drop" (click)="initList()">{{msg.listView.filter.allArtists}}</a>
           <a class="dropdown-item select-drop" *ngFor="let artist of allArtists" (click)="filterByArtist(artist.id)">{{artist.name}}</a>
         </div>
       </div>
 
       <div *ngIf="filterOption === 'time'" class="col-md-3 filter-margin mx-auto">
         <form [formGroup]="lengthFilterForm" id="lengthFilterForm" (ngSubmit)="filterByLength()" novalidate>
-          <label>Dłużej niż: (min)
+          <label>{{msg.listView.filter.greaterThan}}
             <input class="form-control" formControlName="greaterThan" maxlength="3">
           </label>
-          <label>Krocej niż: (min)
+          <label>{{msg.listView.filter.lessThan}}
             <input class="form-control" formControlName="lessThan" maxlength="3">
           </label>
         </form>
-        <button type="submit" form="lengthFilterForm" class="btn btn-secoundary mx-auto" [disabled]="lengthFilterForm.status === 'INVALID'">Filtruj</button>
-        <button class="btn btn-secoundary mx-auto" (click)="initList()">Odfiltruj</button>
+        <button type="submit" form="lengthFilterForm" class="btn btn-secoundary mx-auto" [disabled]="lengthFilterForm.status === 'INVALID'">{{msg.listView.filter.head}}</button>
+        <button class="btn btn-secoundary mx-auto" (click)="initList()">{{msg.listView.filter.unfilter}}</button>
       </div>
 
       <div *ngIf="filterOption === 'genre'" class="btn-group filter-margin mx-auto">
-        <button type="button" class="btn btn-secoundary">Gatunek</button>
+        <button type="button" class="btn btn-secoundary">{{msg.listView.filter.byGenre}}</button>
         <button type="button" class="btn btn-secoundary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item select-drop" (click)="initList()">Wszystkie</a>
+          <a class="dropdown-item select-drop" (click)="initList()">{{msg.listView.filter.allGenre}}</a>
           <a class="dropdown-item select-drop" *ngFor="let genre of allGenres" (click)="filterByGenre(genre.id)">{{genre.name}}</a>
         </div>
       </div>
@@ -44,11 +44,11 @@
     <div class="row">
       <div class="col-md-2 mx-auto filter-margin">
       <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="filterOption='artist'" checked="checked">Artyści</label>
+        <input type="radio" name="optradio" (click)="filterOption='artist'" checked="checked">{{msg.listView.table.head.artist}}</label>
       <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="filterOption='time'">Czas trwania</label>
+        <input type="radio" name="optradio" (click)="filterOption='time'">{{msg.listView.table.head.albumName}}</label>
       <label class="radio-inline">
-        <input type="radio" name="optradio" (click)="filterOption='genre'">Gatunek</label>
+        <input type="radio" name="optradio" (click)="filterOption='genre'">{{msg.listView.table.head.genre}}</label>
       </div>
     </div>
   </div>
@@ -58,19 +58,19 @@
     <thead>
       <tr>
         <th>
-          <button class="btn btn-outline-info btn-sm" (click)="sortByArtist()">Artysta</button>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByArtist()">{{msg.listView.table.head.artist}}</button>
         </th>
         <th>
-          <button class="btn btn-outline-info btn-sm" (click)="sortByName()">Nazwa albumu</button>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByName()">{{msg.listView.table.head.albumName}}</button>
         </th>
         <th>
-          <button class="btn btn-outline-info btn-sm" (click)="sortByTime()">Czas trwania</button>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByTime()">{{msg.listView.table.head.length}}</button>
         </th>
         <th>
-          <button class="btn btn-outline-info btn-sm" (click)="sortByNumberOfSongs()">Liczba utworow</button>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByNumberOfSongs()">{{msg.listView.table.head.songs}}</button>
         </th>
         <th>
-          <button class="btn btn-outline-info btn-sm" (click)="sortByGenre()">Gatunek</button>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByGenre()">{{msg.listView.table.head.genre}}</button>
         </th>
       </tr>
     </thead>
@@ -82,7 +82,7 @@
         <td>{{album.numberOfSongs}}</td>
         <td>{{album.genre.name}}</td>
         <td>
-          <button class="btn btn-outline-info btn-sm" (click)="deleteAlbum(i)">Usuń</button>
+          <button class="btn btn-outline-info btn-sm" (click)="deleteAlbum(i)">{{msg.listView.table.delete}}</button>
         </td>
       </tr>
     </tbody>

@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="msg"  class="container">
 
   <div class="card bg-dark">
     <div class="card-header">
@@ -11,15 +11,15 @@
 
     </div>
     <div class="card-body">
-      <h2 class="text-center text-white header-title">Tracklista:</h2>
+      <h2 class="text-center text-white header-title">{{msg.albumView.track.list}}</h2>
       <table class="table table-sm">
         <thead class="thead-dark">
           <tr>
             <th>#</th>
-            <th>Nazwa</th>
-            <th>Producent</th>
-            <th>Czas trwania</th>
-            <th>Akcje</th>
+            <th>{{msg.albumView.track.title}}</th>
+            <th>{{msg.albumView.track.producer}}</th>
+            <th>{{msg.albumView.track.length}}</th>
+            <th>{{msg.albumView.track.actions}}</th>
           </tr>
         </thead>
         <tbody class="table-white">
@@ -30,7 +30,7 @@
               <span *ngIf="!editTrackName" (click)="editTrackName=i" class="selectable">{{track.name}}</span>
               <div *ngIf="editTrackName" class="row">
                 <input [formControl]="trackName" class="form-control col-md-3" value="{{track.name}}">
-                <button class="btn btn-default btn-sm" (click)="editTrackName=false; saveName(track)">Zapisz</button>
+                <button class="btn btn-default btn-sm" (click)="editTrackName=false; saveName(track)">{{msg.albumView.save}}</button>
               </div>
             </td>
 
@@ -38,7 +38,7 @@
               <span *ngIf="!editProdName" (click)="editProdName=true" class="selectable">{{track.producerName}}</span>
               <div *ngIf="editProdName" class="row">
                 <input [formControl]="producerName" class="form-control col-md-3" value="{{track.producerName}}">
-                <button class="btn btn-default btn-sm" (click)="editProdName=false; saveProdName(track)">Zapisz</button>
+                <button class="btn btn-default btn-sm" (click)="editProdName=false; saveProdName(track)">{{msg.albumView.save}}</button>
               </div>
             </td>
 
@@ -49,49 +49,49 @@
 
                 <div *ngIf="editMin">
                   <label>
-                    <b>Min:</b>
+                    <b>{{msg.albumView.min}}</b>
                     <input [formControl]="min" class="form-control col-md-3" value="{{track.lengthMin}}" maxlength="3">
                   </label>
                 </div>
                 <div *ngIf="editSec">
                   <label>
-                    <b>Sec:</b>
+                    <b>{{msg.albumView.sec}}</b>
                     <input [formControl]="sec" class="form-control col-md-3" value="{{track.lengthSec}}" maxlength="3">
                   </label>
                 </div>
 
-                <button *ngIf="editMin || editSec" class="btn btn-default btn-sm" (click)="editMin=false; editSec=false; saveTime(track)">Zapisz</button>
+                <button *ngIf="editMin || editSec" class="btn btn-default btn-sm" (click)="editMin=false; editSec=false; saveTime(track)">{{msg.albumView.save}}</button>
               </div>
 
             </td>
-            <button class="btn btn-outline-secondary btn-sm" (click)="deleteTrack(i)">Usuń</button>
+            <button class="btn btn-outline-secondary btn-sm" (click)="deleteTrack(i)">{{msg.albumView.delete}}</button>
           </tr>
         </tbody>
       </table>
 
       <form [formGroup]="addTrackForm" id="addTrackForm" (ngSubmit)="addTrack()" class="text-white" novalidate>
         <div class="row">
-          <label class=""><span class="star">*</span>Tytuł utworu:
+          <label class=""><span class="star">*</span>{{msg.albumView.form.title}}
             <input formControlName="title" class="form-control" maxlength="16" novalidate>
-            <p *ngIf="titleWhitespaceError" class="error">Tytuł utworu nie może zawierać tylko spacji</p>
+            <p *ngIf="titleWhitespaceError" class="error">{{msg.albumView.form.titleError}}</p>
           </label>
         </div>
         <div class="row">
-          <label class="">Producent:
+          <label class="">{{msg.albumView.form.producer}}
             <input formControlName="producerName" class="form-control" maxlength="16" novalidate>
           </label>
         </div>
-        <span><span class="star text-center">*</span>Czas trwania: </span>
+        <span><span class="star text-center">*</span>{{msg.albumView.form.length}} </span>
         <div class="row">
-            <label class="col-md-2">Min:
+            <label class="col-md-2">{{msg.albumView.min}}
               <input formControlName="lengthMin" class="form-control" maxlength="3" novalidate>
             </label>
-            <label class="col-md-2">Sec:
+            <label class="col-md-2">{{msg.albumView.sec}}
               <input formControlName="lengthSec" class="form-control" maxlength="2" novalidate>
             </label>
           
         </div>
-        <button class=" center-block" type="submit" form="addTrackForm" [disabled]="addTrackForm.status === 'INVALID' || titleWhitespaceError" class="btn btn-outline-info">Dodaj utwor</button>
+        <button class=" center-block" type="submit" form="addTrackForm" [disabled]="addTrackForm.status === 'INVALID' || titleWhitespaceError" class="btn btn-outline-info">{{msg.albumView.form.addTrack}}</button>
       </form>
       
 

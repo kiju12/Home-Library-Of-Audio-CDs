@@ -1,16 +1,18 @@
-<h1 class="text-center display-4">{{msg.title}}</h1>
+<div *ngIf="msg">
+  <h1 class="text-center display-4">{{msg.main.title}}</h1>
 
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/library">Przeglądaj</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/addAlbum">Dodaj album</a>
-  </li>
-</ul>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/library">{{msg.main.toLibrary}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/addAlbum">{{msg.main.toAlbumForm}}</a>
+    </li>
+  </ul>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-<div class="container border bg-light">
-  <p class="text-center text-muted">Maciej Kijko</p>
+  <div class="container border bg-light foot">
+    <p class="text-center text-muted">{{msg.main.footer}}</p>
+  </div>
 </div>
