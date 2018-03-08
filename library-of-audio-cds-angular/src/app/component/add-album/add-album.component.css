@@ -1,0 +1,36 @@
+.track-name {
+    color: black;
+    text-align: left;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.main-form {
+    margin-left: 15%;
+}
+
+.album-button {
+    margin-top: 30px;
+}
+
+.header {
+    letter-spacing: 10px;
+}
+
+.info-footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: 8pt;
+}
+
+.star {
+    color: #66ccff;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 8pt;
+    
+}

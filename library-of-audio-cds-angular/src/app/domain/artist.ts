@@ -2,10 +2,10 @@ import { Album } from './album';
 
 export class Artist {
     id: number;
-    name: String;
+    name: string;
     discography: Album[];
 
-    constructor(name: String) {
+    constructor(name: string) {
         this.name = name;
         this.discography = [];
     }

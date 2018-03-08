@@ -43,10 +43,10 @@ public class LibraryOfAudio {
 		Genre gen = new Genre("HipHop");
 		gen = genreRepo.save(gen);
 		
-		Album album = new Album(artist, "Złota Owca", 63, 20, gen);	
+		Album album = new Album(artist, "Złota Owca", 63, 23, 20, gen);	
 		album = albumRepo.save(album);
 
-		Track track = new Track(album, "Ostatni krzyk osiedla", "Carson", 3.21);
+		Track track = new Track(album, "Ostatni krzyk osiedla", "Carson", 3, 23);
 		trackRepo.save(track);
 	}
 }

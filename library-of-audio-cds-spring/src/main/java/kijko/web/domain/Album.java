@@ -13,51 +13,52 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Album implements Serializable {
 
 	private static final long serialVersionUID = -3000159690649506162L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
-	
-	private double length;
-	
+
+	private int lengthMin;
+	private int lengthSec;
+
 	private int numberOfSongs;
-	
-	
-	@ManyToOne(cascade= { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE }, optional=false)
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE }, optional = false)
 	private Artist artist;
-	
-	@OneToMany(cascade= { CascadeType.REMOVE, CascadeType.REFRESH }, fetch = FetchType.EAGER, mappedBy = "album")
+
+	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.REFRESH }, fetch = FetchType.EAGER, mappedBy = "album")
 	private List<Track> trackList;
-	
+
 	@ManyToOne
 	private Genre genre;
-	
-	public Album() {}
 
-	public Album(Artist art, String name, double length, int numberOfSongs, List<Track> trackList, Genre genre) {
+	public Album() {
+	}
+
+	public Album(Artist art, String name, int lengthMin, int lengthSec, int numberOfSongs, List<Track> trackList,
+			Genre genre) {
 		this.artist = art;
 		this.name = name;
-		this.length = length;
+		this.lengthMin = lengthMin;
+		this.lengthSec = lengthSec;
 		this.numberOfSongs = numberOfSongs;
 		this.trackList = trackList;
 		this.genre = genre;
 	}
-	
-	public Album(Artist art, String name, double length, int numberOfSongs, Genre genre) {
+
+	public Album(Artist art, String name, int lengthMin, int lengthSec, int numberOfSongs, Genre genre) {
 		this.artist = art;
 
 		this.name = name;
-		this.length = length;
+		this.lengthMin = lengthMin;
+		this.lengthSec = lengthSec;
 		this.numberOfSongs = numberOfSongs;
 		this.trackList = new ArrayList<Track>(numberOfSongs);
 		this.genre = genre;
@@ -79,12 +80,20 @@ public class Album implements Serializable {
 		this.name = name;
 	}
 
-	public double getLength() {
-		return length;
+	public int getLengthMin() {
+		return lengthMin;
 	}
 
-	public void setLength(double length) {
-		this.length = length;
+	public void setLengthMin(int lengthMin) {
+		this.lengthMin = lengthMin;
+	}
+
+	public int getLengthSec() {
+		return lengthSec;
+	}
+
+	public void setLengthSec(int lengthSec) {
+		this.lengthSec = lengthSec;
 	}
 
 	public int getNumberOfSongs() {
@@ -103,8 +112,6 @@ public class Album implements Serializable {
 		this.artist = artist;
 	}
 
-	
-	
 	public List<Track> getTrackList() {
 		return trackList;
 	}
@@ -120,5 +127,5 @@ public class Album implements Serializable {
 	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
-	
+
 }

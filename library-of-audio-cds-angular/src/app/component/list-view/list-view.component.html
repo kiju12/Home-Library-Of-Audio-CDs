@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="border bg-light">
+    <div class="row">
+      <h1 class="mx-auto filter-head">Filtruj</h1>
+    </div>
+
+    <div class="row">
+      <div *ngIf="filterOption === 'artist'" class="btn-group filter-margin mx-auto">
+        <button type="button" class="btn btn-secoundary">Artyści</button>
+        <button type="button" class="btn btn-secoundary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item select-drop" (click)="initList()">Wszyscy</a>
+          <a class="dropdown-item select-drop" *ngFor="let artist of allArtists" (click)="filterByArtist(artist.id)">{{artist.name}}</a>
+        </div>
+      </div>
+
+      <div *ngIf="filterOption === 'time'" class="col-md-3 filter-margin mx-auto">
+        <form [formGroup]="lengthFilterForm" id="lengthFilterForm" (ngSubmit)="filterByLength()" novalidate>
+          <label>Dłużej niż: (min)
+            <input class="form-control" formControlName="greaterThan" maxlength="3">
+          </label>
+          <label>Krocej niż: (min)
+            <input class="form-control" formControlName="lessThan" maxlength="3">
+          </label>
+        </form>
+        <button type="submit" form="lengthFilterForm" class="btn btn-secoundary mx-auto" [disabled]="lengthFilterForm.status === 'INVALID'">Filtruj</button>
+        <button class="btn btn-secoundary mx-auto" (click)="initList()">Odfiltruj</button>
+      </div>
+
+      <div *ngIf="filterOption === 'genre'" class="btn-group filter-margin mx-auto">
+        <button type="button" class="btn btn-secoundary">Gatunek</button>
+        <button type="button" class="btn btn-secoundary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item select-drop" (click)="initList()">Wszystkie</a>
+          <a class="dropdown-item select-drop" *ngFor="let genre of allGenres" (click)="filterByGenre(genre.id)">{{genre.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 mx-auto filter-margin">
+      <label class="radio-inline">
+        <input type="radio" name="optradio" (click)="filterOption='artist'" checked="checked">Artyści</label>
+      <label class="radio-inline">
+        <input type="radio" name="optradio" (click)="filterOption='time'">Czas trwania</label>
+      <label class="radio-inline">
+        <input type="radio" name="optradio" (click)="filterOption='genre'">Gatunek</label>
+      </div>
+    </div>
+  </div>
+
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByArtist()">Artysta</button>
+        </th>
+        <th>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByName()">Nazwa albumu</button>
+        </th>
+        <th>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByTime()">Czas trwania</button>
+        </th>
+        <th>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByNumberOfSongs()">Liczba utworow</button>
+        </th>
+        <th>
+          <button class="btn btn-outline-info btn-sm" (click)="sortByGenre()">Gatunek</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let album of allAlbums; let i = index" class="select-album">
+        <td>{{album.artist.name}}</td>
+        <td>{{album.name}}</td>
+        <td>{{album.lengthMin}} min. {{album.lengthSec}} sec.</td>
+        <td>{{album.numberOfSongs}}</td>
+        <td>{{album.genre.name}}</td>
+        <td>
+          <button class="btn btn-outline-info btn-sm" (click)="deleteAlbum(i)">Usuń</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -48,6 +48,17 @@ public class TrackController {
 		return trackRepo.save(track);
 	}
 	
+	@PostMapping("/api/custom/albums/{id}/tracksArray")
+	public List<Track> addAll(@RequestBody List<Track> tracks, @PathVariable("id") Long albumId) {
+		Album album = albumRepo.findById(albumId).get();
+		
+		for (Track track : tracks) {
+			track.setAlbum(album);
+		}
+
+		return trackRepo.saveAll(tracks);
+	}
+	
 	@PutMapping("/api/custom/tracks/{id}")
 	public Track update(@RequestBody Track track) {
 		return trackRepo.save(track);

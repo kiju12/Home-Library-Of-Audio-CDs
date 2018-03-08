@@ -5,18 +5,21 @@ import { Genre } from './genre';
 export class Album {
     id: number;
     name: String;
-    length: number;
+    lengthMin: number;
+    lengthSec: number;
     numberOfSongs: number;
     artist: Artist;
     trackList: Track[];
     genre: Genre;
 
-    constructor(artist: Artist, name: String, numberOfSongs: number, length: number, genre: Genre) {
+    constructor(artist: Artist, name: String, numberOfSongs: number, lengthMin: number, lengthSec: number, genre: Genre) {
         this.artist = artist;
         this.name = name;
         this.numberOfSongs = numberOfSongs;
-        this.length = length;
+        this.lengthMin = lengthMin;
+        this.lengthSec = lengthSec;
         this.genre = genre;
         this.trackList = [];
     }
+
 }

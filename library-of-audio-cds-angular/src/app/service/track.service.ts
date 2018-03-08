@@ -26,6 +26,10 @@ export class TrackService {
     return this.http.post<Track>(`${API_URL}/custom/albums/${albumId}/tracks`, track, HEADERS);
   }
 
+  addAll(tracks: Track[], albumId: number): Observable<Track[]> {
+    return this.http.post<Track[]>(`${API_URL}/custom/albums/${albumId}/tracksArray`, tracks, HEADERS);
+  }
+
   update(track: Track): Observable<Track> {
     if (track.id == null) {
       console.log('Update filed - Id undefinied');

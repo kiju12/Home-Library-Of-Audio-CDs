@@ -1,0 +1,18 @@
+.select-album {
+    cursor: pointer;
+}
+
+.select-drop {
+    cursor: pointer;
+}
+
+.filter-margin {
+    margin-top: 20px;
+}
+
+.filter-head {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}

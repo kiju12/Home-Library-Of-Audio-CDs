@@ -26,7 +26,8 @@ public class Track implements Serializable {
 	
 	private String producerName;
 	
-	private double length;
+	private int lengthMin;
+	private int lengthSec;
 	
 	@JsonIgnore
 	@ManyToOne(cascade= { CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE }, optional=false)
@@ -34,11 +35,12 @@ public class Track implements Serializable {
 	
 	public Track() {}
 	
-	public Track(Album album, String name, String producerName, double length) {
+	public Track(Album album, String name, String producerName, int lengthMin, int lengthSec) {
 		this.album = album;
 		this.name = name;
 		this.producerName = producerName;
-		this.length = length;
+		this.lengthMin = lengthMin;
+		this.lengthSec = lengthSec;
 	}
 
 	public Long getId() {
@@ -65,12 +67,21 @@ public class Track implements Serializable {
 		this.producerName = producerName;
 	}
 
-	public double getLength() {
-		return length;
+
+	public int getLengthMin() {
+		return lengthMin;
 	}
 
-	public void setLength(double length) {
-		this.length = length;
+	public void setLengthMin(int lengthMin) {
+		this.lengthMin = lengthMin;
+	}
+
+	public int getLengthSec() {
+		return lengthSec;
+	}
+
+	public void setLengthSec(int lengthSec) {
+		this.lengthSec = lengthSec;
 	}
 
 	public Album getAlbum() {
