@@ -1,0 +1,76 @@
+{
+    "main" : {
+        "title" : "Biblioteka płyt CD",
+        "toLibrary" : "Przeglądaj",
+        "toAlbumForm" : "Dodaj album",
+        "footer" : "2018"
+    },
+    "listView" : {
+        "filter" : {
+            "head" : "Filtruj",
+            "byArtist" : "Artyści",
+            "allArtists" : "Wszyscy",
+            "greaterThan" : "Dłużej niż: (min)",
+            "lessThan" : "Krocej niż: (min)",
+            "unfilter" : "Odfiltruj",
+            "byGenre" : "Gatunek",
+            "allGenre" : "Wszystkie gatunki",
+            "byLength" : "Czas trwania"
+        },
+        "table" : {
+            "head" : {
+                "artist" : "Artysta",
+                "albumName" : "Nazwa albumu",
+                "length" : "Czas trwania",
+                "songs" : "Liczba utworow",
+                "genre" : "Gatunek"
+            },
+            "delete" : "Usuń"
+        }
+    },
+    "albumView" : {
+        "track" : {
+            "list" : "Lista utworow",
+            "title" : "Tytuł",
+            "producer" : "Producent",
+            "length" : "Czas trwania",
+            "actions" : "Akcje"
+        },
+        "save" : "Zapisz",
+        "delete" : "Usuń",
+        "min" : "Mins:",
+        "sec" : "Secs:",
+        "form" : {
+            "title" : "Tytuł utworu:",
+            "titleError" : "Tytuł utworu nie może zawierać tylko spacji.",
+            "producer" : "Producent:",
+            "length" : "Czas trwania:",
+            "addTrack" : "Dodaj utwor"
+        }
+    },
+    "addAlbum" : {
+        "addAlert" : "Album dodany pomyślnie!",
+        "panel" : {
+            "header" : "Dodawanie albumu",
+            "form" : {
+                "artist" : "Artysta:",
+                "artistInfo" : "Minimum 3 znaki.",
+                "artistError" : "Nazwa artysty nie może składać się jedynie z pustych znakow",
+                "genre" : "Gatunek",
+                "albumName" : "Nazwa albumu:",
+                "albumInfo" : "Minimum 3 znaki",
+                "albumError" : "Nazwa albumu nie może składać się jedynie z pustych znakow",
+                "trackForm" : {
+                    "name" : "Nazwa utworu:",
+                    "producer" : "Producent:",
+                    "length" : "Czas trwania",
+                    "min" : "Mins:",
+                    "sec" : "Secs:",
+                    "addTrack" : "Dodaj utwor"
+                },
+                "addAlbum" : "Dodaj album"
+            }
+        }
+    },
+    "required" :  " - pole wymagane"
+}
