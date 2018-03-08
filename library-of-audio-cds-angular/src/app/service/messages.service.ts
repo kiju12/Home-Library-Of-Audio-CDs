@@ -7,6 +7,6 @@ export class MessagesService {
   constructor(private http: HttpClient) { }
 
   getMessages() {
-    return this.http.get('../../assets/messagesPL.json');
+    return this.http.get('../../assets/messages_PL.json');
   }
 }

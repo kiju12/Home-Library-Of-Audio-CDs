@@ -8,6 +8,7 @@ import { AlbumService } from '../../service/album.service';
 import { ArtistService } from '../../service/artist.service';
 import { GenreService } from '../../service/genre.service';
 import { TrackService } from '../../service/track.service';
+import { MessagesService } from '../../service/messages.service';
 
 
 @Component({
@@ -16,6 +17,8 @@ import { TrackService } from '../../service/track.service';
   styleUrls: ['./add-album.component.css']
 })
 export class AddAlbumComponent implements OnInit {
+
+  msg = '';
 
   allArtists: Artist[] = [];
   allGenres: Genre[] = [];
@@ -33,12 +36,16 @@ export class AddAlbumComponent implements OnInit {
     private albumService: AlbumService,
     private artistService: ArtistService,
     private genreService: GenreService,
-    private trackService: TrackService) { }
+    private trackService: TrackService,
+    private messages: MessagesService) { }
 
   ngOnInit() {
     this.createForms();
     this.initLists();
     this.onChangesInForm();
+    this.messages.getMessages().subscribe((data: any) => {
+      this.msg = data;
+    });
     this.albumAdded = false;
   }
 

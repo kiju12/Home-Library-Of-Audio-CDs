@@ -6,6 +6,7 @@ import { ArtistService } from '../../service/artist.service';
 import { Genre } from '../../domain/genre';
 import { GenreService } from '../../service/genre.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MessagesService } from '../../service/messages.service';
 
 @Component({
   selector: 'app-list-view',
@@ -13,6 +14,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./list-view.component.css']
 })
 export class ListViewComponent implements OnInit {
+
+  msg = '';
 
   allAlbums: Album[] = [];
   allArtists: Artist[] = [];
@@ -23,9 +26,11 @@ export class ListViewComponent implements OnInit {
   constructor(private albumService: AlbumService,
     private artistService: ArtistService,
     private genreService: GenreService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private messages: MessagesService) { }
 
   ngOnInit() {
+    this.messages.getMessages().subscribe((data: any) => this.msg = data);
     this.initList();
     this.createForm();
     this.lengthFilterFormOnChange();

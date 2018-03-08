@@ -1,0 +1,101 @@
+<div class="container">
+
+  <div class="card bg-dark">
+    <div class="card-header">
+
+      <div *ngIf="album">
+        <h2 class="display-4 text-center text-white header-title">{{album.artist.name}}</h2>
+        <h2 class="display-4 text-center text-white header">{{album.name}}</h2>
+        <h2 class="display-4 text-center text-white header-title">{{album.genre.name}}</h2>
+      </div>
+
+    </div>
+    <div class="card-body">
+      <h2 class="text-center text-white header-title">Tracklista:</h2>
+      <table class="table table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Nazwa</th>
+            <th>Producent</th>
+            <th>Czas trwania</th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody class="table-white">
+          <tr *ngFor="let track of trackList; let i = index">
+            <td>{{i + 1}}</td>
+
+            <td>
+              <span *ngIf="!editTrackName" (click)="editTrackName=i" class="selectable">{{track.name}}</span>
+              <div *ngIf="editTrackName" class="row">
+                <input [formControl]="trackName" class="form-control col-md-3" value="{{track.name}}">
+                <button class="btn btn-default btn-sm" (click)="editTrackName=false; saveName(track)">Zapisz</button>
+              </div>
+            </td>
+
+            <td>
+              <span *ngIf="!editProdName" (click)="editProdName=true" class="selectable">{{track.producerName}}</span>
+              <div *ngIf="editProdName" class="row">
+                <input [formControl]="producerName" class="form-control col-md-3" value="{{track.producerName}}">
+                <button class="btn btn-default btn-sm" (click)="editProdName=false; saveProdName(track)">Zapisz</button>
+              </div>
+            </td>
+
+            <td>
+              <div class="row">
+                <span *ngIf="!editMin" (click)="editMin=true; editSec=false" class="selectable">{{track.lengthMin}} min.</span>
+                <span *ngIf="!editSec" (click)="editSec=true; editMin=false" class="selectable">{{track.lengthSec}} sec.</span>
+
+                <div *ngIf="editMin">
+                  <label>
+                    <b>Min:</b>
+                    <input [formControl]="min" class="form-control col-md-3" value="{{track.lengthMin}}" maxlength="3">
+                  </label>
+                </div>
+                <div *ngIf="editSec">
+                  <label>
+                    <b>Sec:</b>
+                    <input [formControl]="sec" class="form-control col-md-3" value="{{track.lengthSec}}" maxlength="3">
+                  </label>
+                </div>
+
+                <button *ngIf="editMin || editSec" class="btn btn-default btn-sm" (click)="editMin=false; editSec=false; saveTime(track)">Zapisz</button>
+              </div>
+
+            </td>
+            <button class="btn btn-outline-secondary btn-sm" (click)="deleteTrack(i)">Usuń</button>
+          </tr>
+        </tbody>
+      </table>
+
+      <form [formGroup]="addTrackForm" id="addTrackForm" (ngSubmit)="addTrack()" class="text-white" novalidate>
+        <div class="row">
+          <label class=""><span class="star">*</span>Tytuł utworu:
+            <input formControlName="title" class="form-control" maxlength="16" novalidate>
+            <p *ngIf="titleWhitespaceError" class="error">Tytuł utworu nie może zawierać tylko spacji</p>
+          </label>
+        </div>
+        <div class="row">
+          <label class="">Producent:
+            <input formControlName="producerName" class="form-control" maxlength="16" novalidate>
+          </label>
+        </div>
+        <span><span class="star text-center">*</span>Czas trwania: </span>
+        <div class="row">
+            <label class="col-md-2">Min:
+              <input formControlName="lengthMin" class="form-control" maxlength="3" novalidate>
+            </label>
+            <label class="col-md-2">Sec:
+              <input formControlName="lengthSec" class="form-control" maxlength="2" novalidate>
+            </label>
+          
+        </div>
+        <button class=" center-block" type="submit" form="addTrackForm" [disabled]="addTrackForm.status === 'INVALID' || titleWhitespaceError" class="btn btn-outline-info">Dodaj utwor</button>
+      </form>
+      
+
+    </div>
+  </div>
+
+</div>

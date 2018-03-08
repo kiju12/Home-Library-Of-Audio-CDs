@@ -13,13 +13,15 @@ import { MessagesService } from './service/messages.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { ListViewComponent } from './component/list-view/list-view.component';
 import { AddAlbumComponent } from './component/add-album/add-album.component';
+import { AlbumViewComponent } from './component/album-view/album-view.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListViewComponent,
-    AddAlbumComponent
+    AddAlbumComponent,
+    AlbumViewComponent
   ],
   imports: [
     BrowserModule,

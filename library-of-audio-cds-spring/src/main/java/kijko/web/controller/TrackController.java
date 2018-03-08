@@ -59,8 +59,9 @@ public class TrackController {
 		return trackRepo.saveAll(tracks);
 	}
 	
-	@PutMapping("/api/custom/tracks/{id}")
-	public Track update(@RequestBody Track track) {
+	@PutMapping("/api/custom/albums/{id}/tracks")
+	public Track update(@RequestBody Track track, @PathVariable("id") Long albumId) {
+		track.setAlbum(albumRepo.findById(albumId).get());
 		return trackRepo.save(track);
 	}
 	

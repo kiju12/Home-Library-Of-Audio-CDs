@@ -1,0 +1,38 @@
+.header {
+    letter-spacing: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-title {
+    
+    letter-spacing: 5px;
+    font-size: 18px;
+}
+
+.table-white {
+    background-color: white;
+}
+
+.selectable {
+    cursor: pointer;
+}
+
+button {
+    margin: 5px;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 8pt;
+    
+}
+
+.star {
+    color: #66ccff;
+}
+
+#addTrackForm {
+    margin-left: 30%;
+}

@@ -75,7 +75,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let album of allAlbums; let i = index" class="select-album">
+      <tr *ngFor="let album of allAlbums; let i = index" class="select-album" routerLink="album/{{album.id}}">
         <td>{{album.artist.name}}</td>
         <td>{{album.name}}</td>
         <td>{{album.lengthMin}} min. {{album.lengthSec}} sec.</td>

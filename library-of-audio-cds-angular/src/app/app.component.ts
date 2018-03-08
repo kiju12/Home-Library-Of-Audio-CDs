@@ -15,7 +15,7 @@ import { MessagesService } from './service/messages.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  messagess = '';
+  msg = '';
   albumList: Album[] = [];
   albumOne: Album;
   artist: Artist;
@@ -28,7 +28,7 @@ export class AppComponent {
     private trackService: TrackService,
     private messages: MessagesService) {
 
-    messages.getMessages().subscribe((data: any) => this.messagess = data);
+    messages.getMessages().subscribe((data: any) => this.msg = data);
   }
 
   readAlbums(): void {
